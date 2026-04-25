@@ -2,7 +2,7 @@
 // ─── Real-Time Risk Detection Dashboard ───────────────────────────────────────
 
 import React, { useEffect, useState, useCallback } from 'react';
-import socket from './socket';
+import socket, { BACKEND_URL } from './socket';
 
 import Header         from './components/Header';
 import StatCard       from './components/StatCard';
@@ -101,7 +101,7 @@ export default function App() {
     setAlerts((prev) => prev.filter((a) => a.txn_id !== txnId));
 
     // Fire-and-forget API call to sync dismissal
-    fetch(`http://localhost:5000/api/alerts/${txnId}/dismiss`, { method: 'POST' })
+    fetch(`${BACKEND_URL}/api/alerts/${txnId}/dismiss`, { method: 'POST' })
       .catch(() => {}); // silently fail (non-blocking)
   }, []);
 
