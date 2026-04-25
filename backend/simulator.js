@@ -131,7 +131,7 @@ function postTransaction(payload) {
 
   const options = {
     hostname: 'localhost',
-    port: 5000,
+    port: process.env.PORT || 5000,
     path: '/api/transaction',
     method: 'POST',
     headers: {
