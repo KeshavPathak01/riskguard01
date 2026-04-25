@@ -36,13 +36,14 @@ const Icons = {
 };
 
 export default function App() {
-  const [connected, setConnected]       = useState(false);
+  const [connected, setConnected]       = useState(socket.connected);
   const [transactions, setTransactions] = useState([]);
   const [alerts, setAlerts]             = useState([]);
   const [stats, setStats]               = useState({});
   const [latestScore, setLatestScore]   = useState(0);
 
   useEffect(() => {
+    setConnected(socket.connected);
     socket.on('connect',    () => setConnected(true));
     socket.on('disconnect', () => setConnected(false));
 

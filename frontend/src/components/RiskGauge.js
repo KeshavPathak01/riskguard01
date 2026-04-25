@@ -39,14 +39,9 @@ export default function RiskGauge({ score = 0 }) {
   const color = getRiskColor(score);
   const label = getRiskLabel(score);
 
-  const scoreAngle = 180 - (score / 100) * 180;
-
-  const needleRad = (scoreAngle * Math.PI) / 180;
-  const needleLen = R * 0.7;
-  const needleX = CX + needleLen * Math.cos(needleRad);
-  const needleY = CY - needleLen * Math.sin(needleRad);
-
-  const scoreArc = describeArc(180, scoreAngle);
+  const arcLength = Math.PI * R;
+  // Calculate the amount of the arc to fill based on the score
+  const dashOffset = arcLength - (score / 100) * arcLength;
 
   return (
     <div style={{ width: '100%', maxWidth: 200, margin: '0 auto' }}>
@@ -55,7 +50,6 @@ export default function RiskGauge({ score = 0 }) {
         width="100%"
         style={{ display: 'block', overflow: 'hidden' }}
       >
-        {}
         <path
           d={describeArc(180, 0)}
           fill="none"
@@ -64,39 +58,41 @@ export default function RiskGauge({ score = 0 }) {
           strokeLinecap="round"
         />
 
-        {}
-        {score > 0 && (
-          <path
-            d={scoreArc}
-            fill="none"
-            stroke={color}
-            strokeWidth="12"
-            strokeLinecap="round"
-            style={{
-              filter: `drop-shadow(0 0 6px ${color}80)`,
-              transition: 'all 0.6s cubic-bezier(0.4,0,0.2,1)',
-            }}
-          />
-        )}
+        <path
+          d={describeArc(180, 0)}
+          fill="none"
+          stroke={color}
+          strokeWidth="12"
+          strokeLinecap="round"
+          strokeDasharray={arcLength}
+          strokeDashoffset={dashOffset}
+          style={{
+            filter: `drop-shadow(0 0 6px ${color}80)`,
+            transition: 'stroke-dashoffset 0.6s cubic-bezier(0.4,0,0.2,1), stroke 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s cubic-bezier(0.4,0,0.2,1)',
+          }}
+        />
 
-        {}
         <line
           x1={CX} y1={CY}
-          x2={needleX} y2={needleY}
+          x2={CX - (R * 0.7)} y2={CY}
           stroke={color}
           strokeWidth="2"
           strokeLinecap="round"
           style={{
             filter: `drop-shadow(0 0 4px ${color})`,
-            transition: 'all 0.6s cubic-bezier(0.4,0,0.2,1)',
+            transform: `rotate(${score * 1.8}deg)`,
+            transformOrigin: `${CX}px ${CY}px`,
+            transition: 'transform 0.6s cubic-bezier(0.4,0,0.2,1), stroke 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s cubic-bezier(0.4,0,0.2,1)',
           }}
         />
 
-        {}
         <circle
           cx={CX} cy={CY} r={4}
           fill={color}
-          style={{ filter: `drop-shadow(0 0 5px ${color})` }}
+          style={{ 
+            filter: `drop-shadow(0 0 5px ${color})`,
+            transition: 'fill 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s cubic-bezier(0.4,0,0.2,1)'
+          }}
         />
 
         {}
