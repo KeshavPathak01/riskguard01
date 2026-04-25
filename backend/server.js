@@ -88,7 +88,7 @@ setInterval(() => {
 }, 5000);
 
 // ── Start server then simulator ───────────────────────────
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`\n🚀 Risk Detection Server running on port ${PORT}`);
   console.log(`   REST:      http://localhost:${PORT}/api`);
