@@ -1,22 +1,9 @@
-/**
- * rules/deviceRule.js
- *
- * Detects transactions from new or unrecognized devices.
- *
- * Logic:
- *  - Check if txn.device_id appears in user's knownDevices list
- *  - Suspended devices or unknown device strings also score high
- */
 
-const WEIGHT = 20; // max contribution to total risk score
+
+const WEIGHT = 20; 
 
 const SUSPICIOUS_KEYWORDS = ['unknown', 'vpn', 'tor', 'bot', 'headless', 'phantom'];
 
-/**
- * @param {object} txn         - Incoming transaction
- * @param {object} userProfile - User's stored profile from store.js
- * @returns {{ score: number, weight: number, reason: string|null }}
- */
 function evaluate(txn, userProfile) {
   const deviceId = (txn.device_id || '').toLowerCase();
   const knownDevices = userProfile.knownDevices || [];

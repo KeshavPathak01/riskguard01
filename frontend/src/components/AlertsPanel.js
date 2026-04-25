@@ -1,10 +1,5 @@
-// src/components/AlertsPanel.js
-import React from 'react';
 
-/**
- * High-risk alerts panel — shows only flagged (score ≥ 70) transactions.
- * Supports local dismissal.
- */
+import React from 'react';
 
 function formatTime(ts) {
   if (!ts) return '';
@@ -18,7 +13,7 @@ function AlertRow({ alert, onDismiss }) {
     <div className="group flex items-start gap-3 p-3.5 rounded-xl bg-slate-900/60 border border-rose-500/10
       hover:border-rose-500/25 transition-all duration-200 animate-fade-slide">
 
-      {/* Icon */}
+      {}
       <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-rose-500/10 border border-rose-500/20
         flex items-center justify-center">
         <svg className="w-4 h-4 text-rose-400" style={{width:16,height:16}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,7 +22,7 @@ function AlertRow({ alert, onDismiss }) {
         </svg>
       </div>
 
-      {/* Content */}
+      {}
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs font-bold text-slate-200">
@@ -48,7 +43,7 @@ function AlertRow({ alert, onDismiss }) {
         )}
       </div>
 
-      {/* Dismiss */}
+      {}
       <button
         onClick={() => onDismiss(alert.txn_id)}
         className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200
@@ -66,7 +61,7 @@ function AlertRow({ alert, onDismiss }) {
 export default function AlertsPanel({ alerts = [], onDismiss }) {
   return (
     <div className="glass rounded-2xl border border-rose-500/10 flex flex-col">
-      {/* Header */}
+      {}
       <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700/50">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-rose-500 shadow-lg shadow-rose-500/50" style={{ boxShadow: '0 0 8px #f87171' }} />
@@ -79,7 +74,7 @@ export default function AlertsPanel({ alerts = [], onDismiss }) {
         )}
       </div>
 
-      {/* List */}
+      {}
       <div className="flex-1 overflow-y-auto p-3 space-y-2 max-h-[380px]">
         {alerts.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-10 text-slate-600">

@@ -1,22 +1,9 @@
-/**
- * rules/failedAttemptsRule.js
- *
- * Detects excessive failed transaction or login attempts.
- *
- * Logic:
- *  - Uses txn.failedCount (provided per transaction) + userProfile.failedAttempts (cumulative)
- *  - High failed attempt counts strongly indicate brute-force or account takeover
- */
 
-const WEIGHT = 10; // max contribution to total risk score
 
-/**
- * @param {object} txn         - Incoming transaction
- * @param {object} userProfile - User's stored profile from store.js
- * @returns {{ score: number, weight: number, reason: string|null }}
- */
+const WEIGHT = 10; 
+
 function evaluate(txn, userProfile) {
-  // Combine per-transaction failed count with running user total
+  
   const txnFailed = txn.failedCount || 0;
   const profileFailed = userProfile.failedAttempts || 0;
   const totalFailed = txnFailed + profileFailed;

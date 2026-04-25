@@ -1,9 +1,6 @@
-// src/components/Header.js
+
 import React from 'react';
 
-/**
- * Header component — shows branding, live connection badge, and real-time clock.
- */
 export default function Header({ connected, stats }) {
   const [time, setTime] = React.useState(new Date());
 
@@ -14,9 +11,9 @@ export default function Header({ connected, stats }) {
 
   return (
     <header className="glass rounded-2xl px-6 py-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      {/* Brand */}
+      {}
       <div className="flex items-center gap-3">
-        {/* Shield icon */}
+        {}
         <div className="relative flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg shadow-blue-900/40">
           <svg className="w-6 h-6 text-white" style={{width:24, height:24}} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -35,9 +32,9 @@ export default function Header({ connected, stats }) {
         </div>
       </div>
 
-      {/* Right strip */}
+      {}
       <div className="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
-        {/* Quick stats */}
+        {}
         <div className="hidden md:flex items-center gap-5 text-center">
           <div>
             <p className="text-lg font-bold text-white">{stats.total ?? 0}</p>
@@ -55,12 +52,12 @@ export default function Header({ connected, stats }) {
           </div>
         </div>
 
-        {/* Clock */}
+        {}
         <div className="text-xs font-mono text-slate-400 hidden lg:block">
           {time.toLocaleTimeString()}
         </div>
 
-        {/* Connection status */}
+        {}
         <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold border
           ${connected
             ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'

@@ -1,10 +1,4 @@
-/**
- * controllers/alertController.js
- *
- * Handles:
- *  GET  /api/alerts           → paginated list of flagged transactions
- *  POST /api/alerts/:txnId/dismiss → remove an alert
- */
+
 
 const store = require('../store');
 

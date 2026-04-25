@@ -1,23 +1,9 @@
-/**
- * rules/locationRule.js
- *
- * Detects unusual or new geographical locations.
- *
- * Logic:
- *  - Check if location is in user's known locations
- *  - Check for high-risk location keywords
- *  - Detect impossible travel (if last txn was recent but location changed)
- */
 
-const WEIGHT = 20; // max contribution to total risk score
+
+const WEIGHT = 20; 
 
 const HIGH_RISK_LOCATIONS = ['unknown', 'vpn', 'tor'];
 
-/**
- * @param {object} txn         - Incoming transaction
- * @param {object} userProfile - User's stored profile from store.js
- * @returns {{ score: number, weight: number, reason: string|null }}
- */
 function evaluate(txn, userProfile) {
   const location = (txn.location || '').trim();
   const locationLower = location.toLowerCase();
@@ -27,7 +13,6 @@ function evaluate(txn, userProfile) {
   let score = 0;
   let reason = null;
 
-  // High-risk / anonymous locations
   if (!location) {
     score = 80;
     reason = 'Transaction location is missing';
@@ -43,8 +28,7 @@ function evaluate(txn, userProfile) {
   const isNewLocation = !knownLocations.includes(location);
 
   if (isNewLocation) {
-    // Check for possible impossible travel:
-    // If user transacted somewhere recently (< 30 min) from a different location
+
     const lastTs = recentTs.length > 0 ? recentTs[recentTs.length - 1] : null;
     const now = txn.timestamp || Date.now();
     const timeDiffMin = lastTs ? (now - lastTs) / 60000 : Infinity;

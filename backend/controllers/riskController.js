@@ -1,9 +1,4 @@
-/**
- * controllers/riskController.js
- *
- * Handles GET /api/risk/:userId
- * - Returns a user's current risk profile, recent transactions, and history chart data
- */
+
 
 const store = require('../store');
 
@@ -33,7 +28,7 @@ async function getUserRisk(req, res) {
         knownDevices: profile.knownDevices,
         knownLocations: profile.knownLocations,
         failedAttempts: profile.failedAttempts,
-        riskHistory: profile.riskHistory,   // [{score, ts}] for charting
+        riskHistory: profile.riskHistory,   
         recentTransactions: recentTxns,
       },
     });
@@ -43,10 +38,6 @@ async function getUserRisk(req, res) {
   }
 }
 
-/**
- * GET /api/stats
- * Dashboard overview statistics
- */
 async function getStats(req, res) {
   try {
     const stats = store.getStats();

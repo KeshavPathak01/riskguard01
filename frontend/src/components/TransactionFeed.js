@@ -1,10 +1,5 @@
-// src/components/TransactionFeed.js
-import React from 'react';
 
-/**
- * Scrollable live transaction feed with animated entries.
- * Each card shows: user, amount, risk badge, flag indicators, reasons.
- */
+import React from 'react';
 
 function getRiskMeta(score) {
   if (score >= 70) return {
@@ -42,10 +37,10 @@ function TxnCard({ txn, index }) {
         rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl overflow-hidden txn-card"
       style={{ animationDelay: `${Math.min(index * 30, 150)}ms` }}
     >
-      {/* Risk glow blob */}
+      {}
       <div className={`absolute -top-8 -right-8 w-24 h-24 blur-3xl opacity-15 rounded-full ${meta.glow}`} />
 
-      {/* Top row */}
+      {}
       <div className="flex items-start justify-between mb-4 relative z-10">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 border border-slate-600
@@ -58,14 +53,14 @@ function TxnCard({ txn, index }) {
           </div>
         </div>
 
-        {/* Risk badge */}
+        {}
         <span className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border ${meta.badge}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />
           {meta.label} · {risk.score}
         </span>
       </div>
 
-      {/* Amount */}
+      {}
       <div className="relative z-10 mb-4">
         <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-0.5">Amount</p>
         <p className="text-2xl font-black text-slate-100 tracking-tight">
@@ -74,7 +69,7 @@ function TxnCard({ txn, index }) {
         </p>
       </div>
 
-      {/* Risk reasons */}
+      {}
       {risk.reasons && risk.reasons.length > 0 && risk.reasons[0] !== 'No anomalies detected — normal transaction behavior' && (
         <div className="relative z-10 mb-3">
           <ul className="space-y-1">
@@ -88,7 +83,7 @@ function TxnCard({ txn, index }) {
         </div>
       )}
 
-      {/* Flag chips */}
+      {}
       <div className="relative z-10 flex flex-wrap gap-1.5 border-t border-slate-800 pt-3">
         {txn.device_id && txn.device_id.toLowerCase().includes('unknown') && (
           <Chip label="New Device" />
@@ -121,7 +116,7 @@ function Chip({ label, danger = false }) {
 export default function TransactionFeed({ transactions = [], onSimulate }) {
   return (
     <div className="glass rounded-2xl border border-slate-700/50 flex flex-col h-full min-h-[480px]">
-      {/* Header */}
+      {}
       <div className="flex items-center justify-between px-5 py-4 border-b border-slate-700/50">
         <div className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
@@ -150,7 +145,7 @@ export default function TransactionFeed({ transactions = [], onSimulate }) {
         </div>
       </div>
 
-      {/* Cards grid */}
+      {}
       <div className="flex-1 overflow-y-auto p-4">
         {transactions.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full py-16 text-slate-600 animate-pulse">

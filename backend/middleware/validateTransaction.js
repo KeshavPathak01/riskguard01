@@ -1,18 +1,9 @@
-/**
- * middleware/validateTransaction.js
- *
- * Express middleware that validates incoming transaction payloads
- * before they reach the controller.
- *
- * Required fields: user_id, amount
- * Optional but validated if present: device_id, location, failedCount, timestamp
- */
+
 
 function validateTransaction(req, res, next) {
   const { user_id, amount } = req.body;
   const errors = [];
 
-  // ─── Required Fields ─────────────────────────────────────────────────────────
   if (!user_id || typeof user_id !== 'string' || user_id.trim() === '') {
     errors.push('user_id is required and must be a non-empty string');
   }
@@ -25,7 +16,6 @@ function validateTransaction(req, res, next) {
     errors.push('amount must be non-negative');
   }
 
-  // ─── Optional Field Validation ───────────────────────────────────────────────
   if (req.body.failedCount !== undefined) {
     if (typeof req.body.failedCount !== 'number' || req.body.failedCount < 0) {
       errors.push('failedCount must be a non-negative number');
@@ -46,7 +36,6 @@ function validateTransaction(req, res, next) {
     });
   }
 
-  // Normalise: attach defaults for optional fields
   req.body.timestamp = req.body.timestamp || Date.now();
   req.body.failedCount = req.body.failedCount || 0;
   req.body.device_id = req.body.device_id || null;

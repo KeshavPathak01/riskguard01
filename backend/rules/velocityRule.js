@@ -1,26 +1,12 @@
-/**
- * rules/velocityRule.js
- *
- * Detects high transaction frequency (velocity) within a time window.
- *
- * Logic:
- *  - Count how many transactions occurred in the last 60 seconds
- *  - Compare against thresholds
- */
 
-const WEIGHT = 25; // max contribution to total risk score
-const WINDOW_MS = 60 * 1000; // 60-second sliding window
 
-/**
- * @param {object} txn         - Incoming transaction
- * @param {object} userProfile - User's stored profile from store.js
- * @returns {{ score: number, weight: number, reason: string|null }}
- */
+const WEIGHT = 25; 
+const WINDOW_MS = 60 * 1000; 
+
 function evaluate(txn, userProfile) {
   const now = txn.timestamp || Date.now();
   const recentTs = userProfile.recentTimestamps || [];
 
-  // Count transactions within the last WINDOW_MS
   const txnsInWindow = recentTs.filter((ts) => now - ts <= WINDOW_MS).length;
 
   let score = 0;

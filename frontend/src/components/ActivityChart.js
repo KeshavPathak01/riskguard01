@@ -1,16 +1,9 @@
-// src/components/ActivityChart.js
+
 import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
-
-/**
- * Risk score bar chart — shows rolling 12-bucket activity.
- *
- * Props:
- *   transactions  Array  — recent transactions with risk.score
- */
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -32,7 +25,7 @@ function bucketTransactions(transactions, numBuckets = 12) {
   }
 
   const now = Date.now();
-  const windowMs = 60 * 1000; // last 60 seconds
+  const windowMs = 60 * 1000; 
   const bucketMs = windowMs / numBuckets;
 
   const buckets = Array.from({ length: numBuckets }, (_, i) => ({
@@ -46,7 +39,7 @@ function bucketTransactions(transactions, numBuckets = 12) {
     if (age > windowMs) continue;
 
     const bucketIdx = Math.min(numBuckets - 1, Math.floor(age / bucketMs));
-    const idx = numBuckets - 1 - bucketIdx; // most recent = right
+    const idx = numBuckets - 1 - bucketIdx; 
     buckets[idx].scores.push(txn.risk?.score ?? 0);
   }
 

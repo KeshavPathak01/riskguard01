@@ -1,5 +1,4 @@
-// src/App.js
-// ─── Real-Time Risk Detection Dashboard ───────────────────────────────────────
+
 
 import React, { useEffect, useState, useCallback } from 'react';
 import socket, { BACKEND_URL } from './socket';
@@ -11,7 +10,6 @@ import AlertsPanel    from './components/AlertsPanel';
 import RiskGauge      from './components/RiskGauge';
 import ActivityChart  from './components/ActivityChart';
 
-// ── Icon helpers (inline SVG to avoid heavy icon deps) ────────────────────────
 const Icons = {
   Zap: (
     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +35,6 @@ const Icons = {
   ),
 };
 
-// ── Main App Component ──────────────────────────────────────────────────────────
 export default function App() {
   const [connected, setConnected]       = useState(false);
   const [transactions, setTransactions] = useState([]);
@@ -45,26 +42,22 @@ export default function App() {
   const [stats, setStats]               = useState({});
   const [latestScore, setLatestScore]   = useState(0);
 
-  // ── Socket.IO event listeners ───────────────────────────────────────────────
   useEffect(() => {
     socket.on('connect',    () => setConnected(true));
     socket.on('disconnect', () => setConnected(false));
 
-    // New scored transaction broadcasted by server
     socket.on('risk_update', (txn) => {
       setTransactions((prev) => {
         const updated = [txn, ...prev];
-        return updated.slice(0, 100); // keep last 100
+        return updated.slice(0, 100); 
       });
       setLatestScore(txn.risk?.score ?? 0);
     });
 
-    // High-risk alert event
     socket.on('new_alert', (txn) => {
       setAlerts((prev) => [txn, ...prev].slice(0, 50));
     });
 
-    // Server stats heartbeat every 5s
     socket.on('stats_update', (s) => {
       setStats(s);
     });
@@ -78,7 +71,6 @@ export default function App() {
     };
   }, []);
 
-  // ── Manual transaction simulation (via WebSocket) ───────────────────────────
   const handleSimulate = useCallback(() => {
     const users    = ['U1', 'U2', 'U3', 'U4', 'U5'];
     const devices  = ['D-iPhone-14', 'D-Unknown-99', 'D-VPN-Masked', 'D-MacBook-Pro', 'D-Tor-Browser'];
@@ -96,23 +88,20 @@ export default function App() {
     socket.emit('new_txn', txn);
   }, []);
 
-  // ── Alert dismiss (local + API) ─────────────────────────────────────────────
   const handleDismiss = useCallback((txnId) => {
     setAlerts((prev) => prev.filter((a) => a.txn_id !== txnId));
 
-    // Fire-and-forget API call to sync dismissal
     fetch(`${BACKEND_URL}/api/alerts/${txnId}/dismiss`, { method: 'POST' })
-      .catch(() => {}); // silently fail (non-blocking)
+      .catch(() => {}); 
   }, []);
 
-  // ── Derived stats ───────────────────────────────────────────────────────────
   const highRiskPct = stats.total
     ? Math.round((stats.highRisk / stats.total) * 100)
     : 0;
 
   return (
     <div className="min-h-screen bg-[#0a0f1e] text-slate-100 p-4 md:p-6 selection:bg-indigo-500/30">
-      {/* Ambient background blobs */}
+      {}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/8 rounded-full blur-3xl" />
         <div className="absolute top-1/2 -right-40 w-80 h-80 bg-indigo-600/6 rounded-full blur-3xl" />
@@ -121,10 +110,10 @@ export default function App() {
 
       <div className="max-w-7xl mx-auto space-y-5">
 
-        {/* ── Header ─────────────────────────────────────────────────────── */}
+        {}
         <Header connected={connected} stats={stats} />
 
-        {/* ── Stats Row ──────────────────────────────────────────────────── */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatCard
             label="Total Transactions"
@@ -160,9 +149,9 @@ export default function App() {
           />
         </div>
 
-        {/* ── Gauge + Chart Row ───────────────────────────────────────────── */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Gauge */}
+          {}
           <div className="glass rounded-2xl border border-slate-700/50 p-5 flex flex-col items-center justify-between gap-3">
             <div className="w-full flex items-center justify-between">
               <h2 className="text-sm font-bold text-slate-200">Live Risk Gauge</h2>
@@ -172,7 +161,7 @@ export default function App() {
             </div>
             <RiskGauge score={latestScore} />
 
-            {/* Breakdown bar (high / medium / low) */}
+            {}
             <div className="w-full space-y-1.5 mt-4 pt-4 border-t border-slate-700/30">
               {[
                 { label: 'High', cnt: stats.highRisk ?? 0, color: 'bg-rose-500'    },
@@ -193,11 +182,11 @@ export default function App() {
             </div>
           </div>
 
-          {/* Activity Chart */}
+          {}
           <div className="md:col-span-2">
             <ActivityChart transactions={transactions} />
 
-            {/* Mini stat row below chart */}
+            {}
             <div className="grid grid-cols-3 gap-3 mt-4">
               {[
                 { label: 'Medium Risk', value: stats.medRisk ?? 0, color: 'text-amber-400' },
@@ -213,9 +202,9 @@ export default function App() {
           </div>
         </div>
 
-        {/* ── Main Feed + Alerts Row ──────────────────────────────────────── */}
+        {}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Transaction Feed — takes 2 columns */}
+          {}
           <div className="lg:col-span-2">
             <TransactionFeed
               transactions={transactions}
@@ -223,13 +212,13 @@ export default function App() {
             />
           </div>
 
-          {/* Alerts Panel — 1 column */}
+          {}
           <div>
             <AlertsPanel alerts={alerts} onDismiss={handleDismiss} />
           </div>
         </div>
 
-        {/* ── Footer ─────────────────────────────────────────────────────── */}
+        {}
         <footer className="text-center text-[11px] text-slate-600 py-4">
           RiskGuard · Real-Time Fintech Risk Detection · WebSocket + REST API
         </footer>

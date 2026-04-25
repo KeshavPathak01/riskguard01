@@ -1,17 +1,5 @@
-// src/components/StatCard.js
-import React from 'react';
 
-/**
- * Reusable stat tile for the dashboard overview row.
- *
- * Props:
- *   label    string  — metric label
- *   value    string|number
- *   sub      string  — optional sub-label
- *   icon     ReactNode
- *   color    string  — 'blue' | 'rose' | 'amber' | 'emerald' | 'indigo'
- *   glow     bool    — enable subtle glow shadow
- */
+import React from 'react';
 
 const COLOR_MAP = {
   blue:    { text: 'text-blue-400',    bg: 'bg-blue-500/10',   border: 'border-blue-500/20',   glow: 'shadow-blue-900/30' },

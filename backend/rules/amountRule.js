@@ -1,21 +1,7 @@
-/**
- * rules/amountRule.js
- *
- * Detects suspiciously large or sudden transaction amounts.
- *
- * Logic:
- *  - Compare txn.amount against user's rolling average of last 10 transactions
- *  - If no history, use global thresholds
- *  - Sudden spike (> 5x avg) = high risk
- */
 
-const WEIGHT = 25; // max contribution to total risk score
 
-/**
- * @param {object} txn         - Incoming transaction
- * @param {object} userProfile - User's stored profile from store.js
- * @returns {{ score: number, weight: number, reason: string|null }}
- */
+const WEIGHT = 25; 
+
 function evaluate(txn, userProfile) {
   const amount = txn.amount || 0;
   let score = 0;
@@ -24,7 +10,7 @@ function evaluate(txn, userProfile) {
   const history = userProfile.recentAmounts || [];
 
   if (history.length >= 3) {
-    // Calculate rolling average from recent transactions
+    
     const avg = history.reduce((s, a) => s + a, 0) / history.length;
     const ratio = amount / avg;
 
@@ -42,7 +28,7 @@ function evaluate(txn, userProfile) {
       reason = `Large transaction: ₹${amount.toLocaleString()}`;
     }
   } else {
-    // No history — use absolute thresholds
+    
     if (amount >= 50000) {
       score = 90;
       reason = `Very large transaction: ₹${amount.toLocaleString()} (no prior history)`;
