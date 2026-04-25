@@ -1,0 +1,202 @@
+[
+  {
+    "txn_id": "T001",
+    "user_id": "U1",
+    "amount": 250,
+    "timestamp": 1714000000000,
+    "device_id": "D-iPhone-12",
+    "location": "New York",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T002",
+    "user_id": "U1",
+    "amount": 300,
+    "timestamp": 1714000060000,
+    "device_id": "D-iPhone-12",
+    "location": "New York",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T003",
+    "user_id": "U2",
+    "amount": 50000,
+    "timestamp": 1714000100000,
+    "device_id": "D-Android-Unknown",
+    "location": "Dubai",
+    "failedCount": 0,
+    "label": "high_amount"
+  },
+  {
+    "txn_id": "T004",
+    "user_id": "U3",
+    "amount": 100,
+    "timestamp": 1714000200000,
+    "device_id": "D-Laptop-Chrome",
+    "location": "Chicago",
+    "failedCount": 5,
+    "label": "failed_attempts"
+  },
+  {
+    "txn_id": "T005",
+    "user_id": "U4",
+    "amount": 75,
+    "timestamp": 1714000300000,
+    "device_id": "D-Samsung-S23",
+    "location": "Los Angeles",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T006",
+    "user_id": "U4",
+    "amount": 85,
+    "timestamp": 1714000315000,
+    "device_id": "D-Unknown-Device",
+    "location": "Moscow",
+    "failedCount": 0,
+    "label": "new_device_location"
+  },
+  {
+    "txn_id": "T007",
+    "user_id": "U5",
+    "amount": 400,
+    "timestamp": 1714000400000,
+    "device_id": "D-MacBook-Pro",
+    "location": "San Francisco",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T008",
+    "user_id": "U5",
+    "amount": 420,
+    "timestamp": 1714000420000,
+    "device_id": "D-MacBook-Pro",
+    "location": "San Francisco",
+    "failedCount": 0,
+    "label": "high_velocity"
+  },
+  {
+    "txn_id": "T009",
+    "user_id": "U5",
+    "amount": 390,
+    "timestamp": 1714000440000,
+    "device_id": "D-MacBook-Pro",
+    "location": "San Francisco",
+    "failedCount": 0,
+    "label": "high_velocity"
+  },
+  {
+    "txn_id": "T010",
+    "user_id": "U5",
+    "amount": 450,
+    "timestamp": 1714000460000,
+    "device_id": "D-MacBook-Pro",
+    "location": "San Francisco",
+    "failedCount": 0,
+    "label": "high_velocity"
+  },
+  {
+    "txn_id": "T011",
+    "user_id": "U2",
+    "amount": 22000,
+    "timestamp": 1714000500000,
+    "device_id": "D-Pixel-7",
+    "location": "Singapore",
+    "failedCount": 2,
+    "label": "high_risk_combo"
+  },
+  {
+    "txn_id": "T012",
+    "user_id": "U1",
+    "amount": 500,
+    "timestamp": 1714000600000,
+    "device_id": "D-iPhone-12",
+    "location": "New York",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T013",
+    "user_id": "U3",
+    "amount": 12000,
+    "timestamp": 1714000700000,
+    "device_id": "D-Unknown-2",
+    "location": "Frankfurt",
+    "failedCount": 8,
+    "label": "critical_risk"
+  },
+  {
+    "txn_id": "T014",
+    "user_id": "U6",
+    "amount": 200,
+    "timestamp": 1714000800000,
+    "device_id": "D-iPhone-14",
+    "location": "London",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T015",
+    "user_id": "U6",
+    "amount": 15000,
+    "timestamp": 1714000810000,
+    "device_id": "D-Tor-Browser",
+    "location": "Unknown",
+    "failedCount": 3,
+    "label": "critical_risk"
+  },
+  {
+    "txn_id": "T016",
+    "user_id": "U7",
+    "amount": 50,
+    "timestamp": 1714001000000,
+    "device_id": "D-Firefox-Win",
+    "location": "Toronto",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T017",
+    "user_id": "U7",
+    "amount": 55,
+    "timestamp": 1714001010000,
+    "device_id": "D-Firefox-Win",
+    "location": "Toronto",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T018",
+    "user_id": "U8",
+    "amount": 8000,
+    "timestamp": 1714001100000,
+    "device_id": "D-Chrome-Linux",
+    "location": "Berlin",
+    "failedCount": 1,
+    "label": "medium_risk"
+  },
+  {
+    "txn_id": "T019",
+    "user_id": "U9",
+    "amount": 30,
+    "timestamp": 1714001200000,
+    "device_id": "D-Safari-iOS",
+    "location": "Sydney",
+    "failedCount": 0,
+    "label": "normal"
+  },
+  {
+    "txn_id": "T020",
+    "user_id": "U10",
+    "amount": 99999,
+    "timestamp": 1714001300000,
+    "device_id": "D-VPN-Masked",
+    "location": "Unknown",
+    "failedCount": 12,
+    "label": "critical_risk"
+  }
+]
